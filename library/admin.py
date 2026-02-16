@@ -11,3 +11,5 @@ admin.site.register(MaterialPage)
 admin.site.register(Approval)
 admin.site.register(Rejection)
 admin.site.register(ActionLog)
+admin.site.register(AcademicState)
+

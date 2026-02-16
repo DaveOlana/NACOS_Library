@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # -------------------------
@@ -120,3 +121,34 @@ class ActionLog(models.Model):
     action = models.CharField(max_length=255)
     material = models.ForeignKey(Material, on_delete=models.SET_NULL, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+
+class StudentProfile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile"
+    )
+
+    school = models.ForeignKey(
+        School,
+        on_delete=models.PROTECT,
+        related_name="students"
+    )
+
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.PROTECT,
+        related_name="students"
+    )
+
+    level = models.ForeignKey(
+        Level,
+        on_delete=models.PROTECT,
+        related_name="students"
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.department.name} - {self.level.name}"
