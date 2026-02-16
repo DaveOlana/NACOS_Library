@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'library.apps.LibraryConfig',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +87,6 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-AUTH_PASSWORD_VALIDATORS = [
-    {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
@@ -112,8 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
             ),
         },
     },
-]
-    }
 ]
 
 
