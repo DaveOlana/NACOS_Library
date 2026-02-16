@@ -34,6 +34,15 @@ class Semester(models.Model):
     def __str__(self):
         return self.name
 
+class AcademicState(models.Model):
+    current_level = models.ForeignKey(Level, on_delete=models.CASCADE)
+    current_semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.current_level} - {self.current_semester}"
+
+
 
 # -------------------------
 # User Profile
