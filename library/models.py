@@ -36,12 +36,20 @@ class Semester(models.Model):
         return self.name
 
 class AcademicState(models.Model):
-    current_level = models.ForeignKey(Level, on_delete=models.CASCADE)
-    current_semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    updated_at = models.DateTimeField(auto_now=True)
+    SEMESTER_CHOICES = [
+        ("1", "1st Semester"),
+        ("2", "2nd Semester"),
+    ]
+
+    current_semester = models.CharField(
+        max_length=1,
+        choices=SEMESTER_CHOICES,
+        default="1",
+    )
 
     def __str__(self):
-        return f"{self.current_level} - {self.current_semester}"
+        return f"Current Semester: {self.get_current_semester_display()}"
+
 
 
 
