@@ -97,9 +97,11 @@ class Course(models.Model):
     code = models.CharField(max_length=20)
     title = models.CharField(max_length=200)
 
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    level = models.ForeignKey(Level, on_delete=models.CASCADE, null=True)
-    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="courses")
+    level = models.ForeignKey(Level, on_delete=models.CASCADE, null=True,)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, null=True,)
+
+    
 
     def __str__(self):
         return f"{self.code} - {self.title}"
